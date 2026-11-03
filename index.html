@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#10111b" />
+  <meta name="description" content="FOCUS FLOW — Smart Study Timer & Productivity Tracker" />
+  <title>FOCUS FLOW</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="Focus Flow home"><span class="brand-mark">F</span><span>FOCUS<span class="brand-light">FLOW</span><small>STUDY SMARTER</small></span></a>
+      <nav class="side-nav" aria-label="Main navigation">
+        <button class="nav-item active" data-page="home"><i data-lucide="layout-dashboard"></i> Overview</button>
+        <button class="nav-item" data-page="timer"><i data-lucide="timer"></i> Focus Timer</button>
+        <button class="nav-item" data-page="analytics"><i data-lucide="chart-no-axes-combined"></i> Analytics</button>
+        <button class="nav-item" data-page="subjects"><i data-lucide="book-open"></i> Subjects</button>
+        <button class="nav-item" data-page="tasks"><i data-lucide="list-checks"></i> Tasks & Notes</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="quote-card"><i data-lucide="sparkles"></i><p>Small steps every day lead to big results.</p><span>— FOCUS FLOW</span></div>
+        <button class="nav-item" data-page="settings"><i data-lucide="settings-2"></i> Settings</button>
+        <div class="creator">MADE WITH FOCUS<br><b>NATIONVK</b></div>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <div><p class="eyebrow" id="today-label">YOUR PERSONAL STUDY SPACE</p><h1 id="page-title">Good evening, learner <span>✦</span></h1></div>
+        <div class="top-actions">
+          <button class="icon-btn" id="theme-toggle" aria-label="Toggle theme"><i data-lucide="sun-moon"></i></button>
+          <div class="avatar">J</div>
+        </div>
+      </header>
+
+      <section class="page active" id="page-home">
+        <div class="welcome-banner">
+          <div class="welcome-copy"><span class="pill"><i data-lucide="zap"></i> BUILD YOUR MOMENTUM</span><h2>Make today<br><em>count.</em></h2><p>Every focused minute is a step toward your goals.</p><button class="primary-btn" data-go="timer">Start focusing <i data-lucide="arrow-up-right"></i></button></div>
+          <div class="banner-art"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="art-core"><i data-lucide="brain-circuit"></i></div><span class="art-star star-a">✦</span><span class="art-star star-b">✧</span></div>
+        </div>
+        <div class="section-heading"><div><p class="eyebrow">YOUR PROGRESS</p><h2>Today at a glance</h2></div><span class="date-chip" id="date-chip"></span></div>
+        <div class="stats-grid">
+          <article class="stat-card"><div class="stat-icon purple"><i data-lucide="clock-3"></i></div><span>Study time</span><strong id="today-time">0m</strong><small id="time-comparison">Keep building your streak</small></article>
+          <article class="stat-card"><div class="stat-icon blue"><i data-lucide="check-check"></i></div><span>Sessions done</span><strong id="today-sessions">0</strong><small>Completed focus sessions</small></article>
+          <article class="stat-card"><div class="stat-icon green"><i data-lucide="target"></i></div><span>Daily goal</span><strong id="goal-percent">0%</strong><div class="mini-progress"><span id="goal-progress"></span></div></article>
+          <article class="stat-card"><div class="stat-icon orange"><i data-lucide="flame"></i></div><span>Current streak</span><strong id="streak-count">0 days</strong><small>Consistency is everything</small></article>
+        </div>
+        <div class="content-grid">
+          <article class="panel weekly-panel"><div class="panel-heading"><div><p class="eyebrow">CONSISTENCY</p><h3>This week</h3></div><span class="legend"><i></i> Study hours</span></div><div class="chart" id="weekly-chart"></div></article>
+          <article class="panel subject-panel"><div class="panel-heading"><div><p class="eyebrow">YOUR LEARNING</p><h3>Subject breakdown</h3></div><button class="text-btn" data-go="subjects">View all</button></div><div id="home-subjects" class="subject-breakdown"></div></article>
+        </div>
+        <article class="panel recent-panel"><div class="panel-heading"><div><p class="eyebrow">RECENT ACTIVITY</p><h3>Latest sessions</h3></div><button class="text-btn" data-go="analytics">See history</button></div><div id="recent-sessions"></div></article>
+      </section>
+
+      <section class="page" id="page-timer">
+        <div class="timer-layout">
+          <div class="panel timer-panel">
+            <div class="timer-tabs" id="timer-modes"><button class="selected" data-mode="pomodoro">Pomodoro</button><button data-mode="stopwatch">Stopwatch</button><button data-mode="custom">Custom</button></div>
+            <div class="timer-subject"><label for="timer-subject">FOCUSING ON</label><select id="timer-subject"></select></div>
+            <div class="timer-ring" id="timer-ring"><svg viewBox="0 0 300 300" aria-hidden="true"><circle class="ring-track" cx="150" cy="150" r="132"></circle><circle class="ring-progress" id="ring-progress" cx="150" cy="150" r="132"></circle></svg><div class="timer-readout"><span id="timer-status">READY TO FOCUS</span><strong id="timer-display">25:00</strong><small id="timer-subtitle">One step at a time</small></div></div>
+            <div class="timer-controls"><button class="control-btn secondary" id="reset-timer" aria-label="Reset timer"><i data-lucide="rotate-ccw"></i></button><button class="control-btn play" id="start-timer"><i data-lucide="play" id="play-icon"></i><span id="start-label">Start focus</span></button><button class="control-btn secondary" id="skip-timer" aria-label="Skip session"><i data-lucide="skip-forward"></i></button></div>
+            <div class="timer-footnote"><i data-lucide="shield-check"></i> Your progress is saved automatically on this device.</div>
+          </div>
+          <div class="timer-side">
+            <article class="panel"><p class="eyebrow">SESSION PLAN</p><h3>Make it intentional.</h3><p class="muted">Choose one subject, remove distractions, and give it your full attention.</p><div class="session-steps"><div class="step active"><span>01</span><div><b>Focus</b><small>Deep work session</small></div><i data-lucide="brain"></i></div><div class="step"><span>02</span><div><b>Short break</b><small>Rest your mind</small></div><i data-lucide="coffee"></i></div><div class="step"><span>03</span><div><b>Repeat</b><small>Build momentum</small></div><i data-lucide="repeat-2"></i></div></div></article>
+            <article class="panel custom-panel" id="custom-options"><p class="eyebrow">CUSTOM SESSION</p><h3>Set your own pace</h3><div class="custom-inputs"><label>Hours<input id="custom-hours" type="number" min="0" max="23" value="0"></label><label>Minutes<input id="custom-minutes" type="number" min="0" max="59" value="45"></label></div><button class="outline-btn" id="apply-custom">Apply duration</button></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="page" id="page-analytics">
+        <div class="section-heading"><div><p class="eyebrow">MEASURE YOUR MOMENTUM</p><h2>Study analytics</h2></div><span class="date-chip">All-time insights</span></div>
+        <div class="stats-grid analytics-stats"><article class="stat-card"><span>Total study time</span><strong id="all-time">0h</strong><small>Across all sessions</small></article><article class="stat-card"><span>Completed sessions</span><strong id="all-sessions">0</strong><small>Every session counts</small></article><article class="stat-card"><span>Daily average</span><strong id="daily-average">0m</strong><small>Based on active days</small></article><article class="stat-card"><span>Best day</span><strong id="best-day">—</strong><small>Your personal record</small></article></div>
+        <article class="panel"><div class="panel-heading"><div><p class="eyebrow">LAST 7 DAYS</p><h3>Study activity</h3></div></div><div class="chart large-chart" id="analytics-chart"></div></article>
+        <article class="panel"><div class="panel-heading"><div><p class="eyebrow">SESSION LOG</p><h3>Study history</h3></div><button class="outline-btn compact" id="export-csv">Export CSV</button></div><div id="session-history"></div></article>
+      </section>
+
+      <section class="page" id="page-subjects">
+        <div class="section-heading"><div><p class="eyebrow">ORGANIZE YOUR LEARNING</p><h2>Your subjects</h2></div><button class="primary-btn" id="add-subject"><i data-lucide="plus"></i> Add subject</button></div>
+        <div class="subject-grid" id="subject-grid"></div>
+      </section>
+
+      <section class="page" id="page-tasks">
+        <div class="section-heading"><div><p class="eyebrow">PLAN WITH PURPOSE</p><h2>Tasks & notes</h2></div></div>
+        <div class="content-grid task-grid"><article class="panel"><div class="panel-heading"><div><p class="eyebrow">YOUR CHECKLIST</p><h3>Study tasks</h3></div></div><form id="task-form" class="inline-form"><input id="task-input" placeholder="Add a study task..." maxlength="120" required><button class="primary-btn" aria-label="Add task"><i data-lucide="plus"></i></button></form><div id="task-list"></div></article><article class="panel"><div class="panel-heading"><div><p class="eyebrow">QUICK THOUGHTS</p><h3>Study notes</h3></div></div><textarea id="note-input" rows="5" placeholder="Write down an idea, reminder, or something you learned..."></textarea><button class="primary-btn note-save" id="save-note">Save note</button><div id="notes-list"></div></article></div>
+      </section>
+
+      <section class="page" id="page-settings">
+        <div class="section-heading"><div><p class="eyebrow">MAKE IT YOURS</p><h2>Settings</h2></div></div>
+        <div class="settings-layout"><article class="panel settings-panel"><h3>Appearance</h3><div class="setting-row"><div><b>Color theme</b><small>Choose your preferred appearance</small></div><select id="theme-select"><option value="dark">Dark</option><option value="light">Light</option><option value="system">System</option></select></div><div class="setting-row"><div><b>Language</b><small>App interface language</small></div><select id="language-select"><option value="en">English</option><option value="bn">বাংলা</option></select></div><h3>Study goals</h3><div class="setting-row"><div><b>Daily study target</b><small>Set your daily focus goal</small></div><div class="goal-edit"><input type="number" id="daily-goal" min="15" max="1440" step="15"><span>minutes</span></div></div><h3>Timer preferences</h3><div class="setting-row"><div><b>Focus duration</b><small>Pomodoro work interval</small></div><div class="goal-edit"><input type="number" id="focus-duration" min="1" max="180"><span>minutes</span></div></div><div class="setting-row"><div><b>Short break</b><small>Between focus sessions</small></div><div class="goal-edit"><input type="number" id="short-break" min="1" max="60"><span>minutes</span></div></div><div class="setting-row"><div><b>Long break</b><small>After four focus sessions</small></div><div class="goal-edit"><input type="number" id="long-break" min="1" max="90"><span>minutes</span></div></div><button class="primary-btn" id="save-settings">Save settings</button></article><article class="panel settings-panel"><h3>Data & privacy</h3><p class="muted">Your data stays on this device. Export a backup to keep a copy.</p><button class="outline-btn full-btn" id="backup-data"><i data-lucide="download"></i> Download backup</button><label class="outline-btn full-btn import-label"><i data-lucide="upload"></i> Restore backup<input type="file" id="restore-data" accept="application/json" hidden></label><button class="danger-btn full-btn" id="clear-data"><i data-lucide="trash-2"></i> Reset all data</button><div class="about-box"><span class="brand-mark small">F</span><b>FOCUS FLOW</b><small>Developed by NATIONVK · Author: YEASIEN AHMED</small><small>FIND YOUR OWN PATH.</small><small>Version 1.0.0</small></div></article></div>
+      </section>
+
+      <footer class="mobile-footer">FOCUS FLOW <span>·</span> FIND YOUR OWN PATH</footer>
+    </main>
+    <nav class="mobile-nav"><button class="active" data-page="home"><i data-lucide="layout-dashboard"></i><span>Home</span></button><button data-page="timer"><i data-lucide="timer"></i><span>Timer</span></button><button data-page="analytics"><i data-lucide="chart-no-axes-combined"></i><span>Stats</span></button><button data-page="tasks"><i data-lucide="list-checks"></i><span>Tasks</span></button><button data-page="settings"><i data-lucide="settings-2"></i><span>Settings</span></button></nav>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+  <dialog id="subject-dialog"><form method="dialog" id="subject-form"><div class="dialog-head"><h3 id="subject-dialog-title">Add subject</h3><button class="icon-btn" value="cancel" aria-label="Close"><i data-lucide="x"></i></button></div><label>Subject name<input id="subject-name" maxlength="40" required placeholder="e.g. Statistics"></label><label>Color<select id="subject-color"><option value="#8b7cff">Violet</option><option value="#55a6ff">Blue</option><option value="#36c9a0">Mint</option><option value="#ffad66">Orange</option><option value="#ed7ba8">Pink</option></select></label><div class="dialog-actions"><button class="outline-btn" value="cancel">Cancel</button><button class="primary-btn" id="subject-submit" value="default">Save subject</button></div></form></dialog>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
